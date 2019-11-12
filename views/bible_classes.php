@@ -1,7 +1,7 @@
 <hr>
 
 <div class="row">
-<div class="col-6">
+<div class="col-md-6">
 
     <?php if($this->success_message): ?>
         <div class="alert alert-success" role="alert">
@@ -92,7 +92,7 @@
 
     </form>
 </div>
-<div class="col-6">
+<div class="col-sm-6">
     <?php if ($by_attendance_types): ?>
         <?php $current_type_id = null; ?>
         <?php foreach ($by_attendance_types as $type_id => $classes): ?>

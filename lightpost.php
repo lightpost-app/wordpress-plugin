@@ -6,7 +6,7 @@ Plugin URI:        https://github.com/lightpost-app/wordpress-plugin
 Description:       This plugin allows churches to display content from their Lightpost account on their Wordpress-based website.
 Author:            Lightpost
 Author URI:        https://lightpost.app
-Version:           1.0
+Version:           1.0.1
 Requires PHP:      7.0
 Requires at least: 5.0
 */

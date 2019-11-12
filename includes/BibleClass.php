@@ -78,7 +78,7 @@ class BibleClass
 					'body' => [
 						'name'    => sanitize_text_field(sanitize_text_field($_POST['lightpost_name'])), 
 						'email'   => sanitize_text_field(sanitize_text_field($_POST['lightpost_email'])),
-						'classes' => sanitize_text_field(sanitize_text_field($_POST['selected_classes'])),
+						'classes' => $this->recursive_sanitize_text_field($_POST['selected_classes']),
 					],
 				]);
 
@@ -127,5 +127,19 @@ class BibleClass
         }
 		
 		return $content;
+	}
+
+	private function recursive_sanitize_text_field($array) 
+	{
+		foreach ( $array as $key => &$value ) {
+			if ( is_array( $value ) ) {
+				$value = $this->recursive_sanitize_text_field($value);
+			}
+			else {
+				$value = sanitize_text_field( $value );
+			}
+		}
+
+		return $array;
 	}
 }

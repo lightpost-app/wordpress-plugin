@@ -35,6 +35,10 @@ This plugin works once you have signed up for a Lightpost account and can access
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Fixed Bible class registration not recording class selection.
+
 = 1.0.0 =
 
 * Initial public release.
