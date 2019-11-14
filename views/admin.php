@@ -14,14 +14,14 @@
                 <tr valign="top">
                     <th scope="row">API key:</th>
                     <td>
-                        <input type="text" name="lightpost_api_key" value="<?php echo esc_attr(get_option('lightpost_api_key')) ?>" style="min-width: 300px;" />
+                        <input type="password" name="lightpost_api_key" value="<?php echo esc_attr(get_option('lightpost_api_key')) ?>" style="min-width: 300px;" />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Sermon Page:</th>
                     <td>
                         <select name="lightpost_sermon_archive_page_id" style="min-width: 300px;">
-                            <option></option>
+                            <option> -- none -- </option>
                             <?php foreach (get_pages(['post_status' => 'publish,inherit,pending,private,future,draft,trash']) as $page): ?>
                                 <?php if (get_option('lightpost_sermon_archive_page_id') === (string) $page->ID): ?>
                                     <option selected="selected" value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
@@ -32,12 +32,11 @@
                         </select>
                     </td>
                 </tr>
-                </tr>
                 <tr valign="top">
                     <th scope="row">Bible Class Registration Page:</th>
                     <td>
                         <select name="lightpost_bible_class_registration_page_id" style="min-width: 300px;">
-                            <option></option>
+                            <option> -- none -- </option>
                             <?php foreach (get_pages(['post_status' => 'publish,inherit,pending,private,future,draft,trash']) as $page): ?>
                                 <?php if (get_option('lightpost_bible_class_registration_page_id') === (string) $page->ID): ?>
                                     <option selected="selected" value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
@@ -49,6 +48,27 @@
                     </td>
                 </tr>
                 <tr valign="top">
+                    <th scope="row">Directory Page:</th>
+                    <td>
+                        <select name="lightpost_directory_page_id" style="min-width: 300px;">
+                            <option> -- none -- </option>
+                            <?php foreach (get_pages(['post_status' => 'publish,inherit,pending,private,future,draft,trash']) as $page): ?>
+                                <?php if (get_option('lightpost_directory_page_id') === (string) $page->ID): ?>
+                                    <option selected="selected" value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
+                                <?php else: ?>
+                                    <option value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        </select>
+                        <em>This page MUST be password protected.</em>
+                        <p class="description">
+                            <label>
+                                <input type="checkbox" name="lightpost_directory_disclaimer" value="true" <?php echo get_option('lightpost_directory_disclaimer') == 'true' ? 'checked="checked"' : null; ?> /> I understand that this page can expose personal information and must be properly protected.
+                            </label>
+                        </p>
+                    </td>
+                </tr>
+                <!-- <tr valign="top">
                     <th scope="row">Theme:</th>
                     <td>
                         <select name="lightpost_theme" style="min-width: 300px;">
@@ -61,9 +81,9 @@
                                 <?php endif ?>
                             <?php endforeach ?>
                         </select>
-                        <p class="description">Helpful on non Lightpost themes.</p>
+                        <p class="description">Helpful on non-Lightpost themes.</p>
                     </td>
-                </tr>
+                </tr> -->
             </table>
             <p class="submit">
                 <input type="submit" class="button-primary" value="Save Changes" />

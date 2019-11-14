@@ -1,7 +1,10 @@
-<hr>
+<link href="<?php echo plugins_url('css/lightpost.css', dirname(__FILE__)) ?>" rel="stylesheet">
 
+<div class="lp-bootstrap">
+
+<div class="container p-0">
 <div class="row">
-<div class="col-md-6">
+<div class="col-lg-6">
 
     <?php if($this->success_message): ?>
         <div class="alert alert-success" role="alert">
@@ -92,7 +95,8 @@
 
     </form>
 </div>
-<div class="col-sm-6">
+<div class="col-lg-6">
+    <hr class="d-lg-none">
     <?php if ($by_attendance_types): ?>
         <?php $current_type_id = null; ?>
         <?php foreach ($by_attendance_types as $type_id => $classes): ?>
@@ -113,6 +117,8 @@
         <?php endforeach ?>
     <?php endif ?>
 
+</div>
+</div>
 </div>
 
 </div>

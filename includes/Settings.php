@@ -24,6 +24,8 @@ class Settings
             add_option('lightpost_theme', '');
             add_option('lightpost_sermon_archive_page_id', '');
             add_option('lightpost_bible_class_registration_page_id', '');
+            add_option('lightpost_directory_page_id', '');
+            add_option('lightpost_directory_disclaimer', '');
         });
 
         register_deactivation_hook($this->plugin_file, function () {
@@ -31,6 +33,8 @@ class Settings
             delete_option('lightpost_theme');
             delete_option('lightpost_sermon_archive_page_id');
             delete_option('lightpost_bible_class_registration_page_id');
+            delete_option('lightpost_directory_page_id');
+            delete_option('lightpost_directory_disclaimer');
         });
 
         add_action('admin_init', function () {
@@ -38,6 +42,8 @@ class Settings
             register_setting('lightpost', 'lightpost_theme');
             register_setting('lightpost', 'lightpost_sermon_archive_page_id');
             register_setting('lightpost', 'lightpost_bible_class_registration_page_id');
+            register_setting('lightpost', 'lightpost_directory_page_id');
+            register_setting('lightpost', 'lightpost_directory_disclaimer');
         });
     }
 

@@ -1,0 +1,24 @@
+{
+  "name": "lightpost-wordpress-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "node-sass": "^4.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:sass": "node-sass --output-style=expanded --source-map=false css/lightpost.scss css/lightpost.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightpost-app/wordpress-plugin.git"
+  },
+  "author": "Drew Johnston",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightpost-app/wordpress-plugin/issues"
+  },
+  "homepage": "https://github.com/lightpost-app/wordpress-plugin#readme"
+}

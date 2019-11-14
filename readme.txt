@@ -2,7 +2,7 @@
 Contributors: drewjoh
 Tags: church, management, sermons, bible class, calendar, events
 Requires at least: 5.0
-Tested up to: 5.2
+Tested up to: 5.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,6 +34,11 @@ Please note: you must be a Lightpost customer to use this plugin. This plugin ca
 This plugin works once you have signed up for a Lightpost account and can access the API key for your account.
 
 == Changelog ==
+
+= 1.1 =
+
+* Added Member Directory feature.
+* Updated styling to be more consistent.
 
 = 1.0.1 =
 
