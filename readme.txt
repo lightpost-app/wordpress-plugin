@@ -35,6 +35,14 @@ This plugin works once you have signed up for a Lightpost account and can access
 
 == Changelog ==
 
+= 1.1.2 =
+
+* Added better error handling.
+
+= 1.1.1 =
+
+* Fixed a check for protected pages.
+
 = 1.1 =
 
 * Added Member Directory feature.

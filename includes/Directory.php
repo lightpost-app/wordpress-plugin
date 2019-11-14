@@ -8,6 +8,8 @@ class Directory
 	protected $page_id;
 	protected $directory;
 	protected $family;
+	protected $error = false;
+	protected $error_message;
 	
 	public function __construct()
 	{
@@ -21,7 +23,7 @@ class Directory
 	{
 		global $post;
 		
-		if ($this->page_id !== $post->ID || get_option('lightpost_directory_disclaimer') != 'true') {
+		if ($this->page_id !== $post->ID) {
 			return;
 		}
 		
@@ -32,12 +34,21 @@ class Directory
 		}
 	}
 	
-    public function getContent($content)
+    public function getContent($content = null)
     {
+		// If page is password protected and not authenticated, return existing content.
+		if(post_password_required()) {
+			return get_the_content();
+		}
+		// If we have not agreed to the terms for this page, error out.
+		if(get_option('lightpost_directory_disclaimer') != 'true') {
+			return 'Cannot load content: the Lightpost member directory page disclaimer is not checked.';
+		}
+		
 		$this->loadData();
 
         if ($this->error) {
-            return 'Unable to load directory information!  Please try again later.';
+            return $this->error_message ?: 'Unable to load directory information!  Please try again later.';
         }
 		
 		if (is_array($this->directory)) {
@@ -75,16 +86,16 @@ class Directory
 
 		if (!is_array($response)) {
             $this->error = true;
+            $this->error_message = 'The API response was not properly formatted.';
             return;
         }
         if ($response['response']['code'] === 404) {
             $this->error = true;
+            $this->error_message = 'The API response code was 404.';
             return;
         }
 		
-		$response = json_decode($response['body'], true);
-		
-		$this->directory = $response;
+		$this->directory = json_decode($response['body'], true);
 	}
 	
 	public function loadFamilyData()
@@ -104,17 +115,17 @@ class Directory
 			]
 		]);
 
-		if (!is_array($response)) {
+	    if (!is_array($response)) {
             $this->error = true;
+            $this->error_message = 'The API response was not properly formatted.';
             return;
         }
         if ($response['response']['code'] === 404) {
             $this->error = true;
+            $this->error_message = 'The API response code was 404.';
             return;
         }
-		
-		$response = json_decode($response['body'], true);
-		
-		$this->family = $response;
+        
+        $this->family = json_decode($response['body'], true);
 	}
 }
