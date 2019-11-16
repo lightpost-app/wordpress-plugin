@@ -35,6 +35,11 @@ This plugin works once you have signed up for a Lightpost account and can access
 
 == Changelog ==
 
+= 1.1.3 =
+
+* Fixed an issue with partial content loading.
+* Updated design and formatting.
+
 = 1.1.2 =
 
 * Added better error handling.

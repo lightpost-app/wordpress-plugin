@@ -17,10 +17,10 @@
         </form>
     </div>
     <div class="col-md-5 text-right">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="text-decoration-none btn btn-primary text-light" href="?_page=<?php echo ($this->pagination['current_page'] - 1 < 1 ? '1' : $this->pagination['current_page'] - 1); ?><?php echo sanitize_text_field($_GET['query']) ? '&query=' . sanitize_text_field($_GET['query']) : null; ?><?php echo sanitize_text_field($_GET['type']) ? '&type=' . sanitize_text_field($_GET['type']) : null; ?>">Prev</a>
-            <a class="text-decoration-none btn btn-outline-primary">Page <?php echo $this->pagination['current_page']; ?> of <?php echo $this->pagination['last_page']; ?></a>
-            <a class="text-decoration-none btn btn-primary text-light" href="?_page=<?php echo ($this->pagination['current_page'] + 1 <= $this->pagination['last_page'] ? $this->pagination['current_page'] + 1 : $this->sermons['last_page']); ?><?php echo sanitize_text_field($_GET['query']) ? '&query=' . sanitize_text_field($_GET['query']) : null; ?><?php echo sanitize_text_field($_GET['type']) ? '&type=' . sanitize_text_field($_GET['type']) : null; ?>">Next</a>
+        <div class="btn-group" role="group">
+            <a class="text-decoration-none btn btn-primary text-light" href="?_page=<?php echo ($this->sermons['current_page'] - 1 < 1 ? '1' : $this->sermons['current_page'] - 1); ?><?php echo sanitize_text_field($_GET['query']) ? '&query=' . sanitize_text_field($_GET['query']) : null; ?><?php echo sanitize_text_field($_GET['type']) ? '&type=' . sanitize_text_field($_GET['type']) : null; ?>">Prev</a>
+            <a class="text-decoration-none btn btn-outline-primary"><?php echo $this->sermons['current_page']; ?> of <?php echo $this->sermons['last_page']; ?></a>
+            <a class="text-decoration-none btn btn-primary text-light" href="?_page=<?php echo ($this->sermons['current_page'] + 1 <= $this->sermons['last_page'] ? $this->sermons['current_page'] + 1 : $this->sermons['last_page']); ?><?php echo sanitize_text_field($_GET['query']) ? '&query=' . sanitize_text_field($_GET['query']) : null; ?><?php echo sanitize_text_field($_GET['type']) ? '&type=' . sanitize_text_field($_GET['type']) : null; ?>">Next</a>
         </div>
     </div>
 </div>
@@ -36,8 +36,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if ($this->sermons): ?>
-                    <?php foreach ($this->sermons as $sermon): ?>
+                <?php if (isset($this->sermons['data'])): ?>
+                    <?php foreach ($this->sermons['data'] as $sermon): ?>
                         <tr>
                             <td>
                                 <?php echo esc_html(Lightpost\Util::date($sermon['date_sermon'], 'M j, Y')) ?>

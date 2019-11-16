@@ -49,7 +49,7 @@
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <span class="text-muted text-center">
-                                    <span class="badge badge-warning badge-large">No family address on file.</span>
+                                    <span class="badge badge-warning">No addresses on file</span>
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -83,7 +83,7 @@
                                 </table>
                             <?php else: ?>
                                 <span class="text-muted text-center">
-                                    <span class="badge badge-warning badge-large">No family phone number on file.</span>
+                                    <span class="badge badge-warning">No phone numbers on file</span>
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -115,7 +115,7 @@
                                 </table>
                             <?php else: ?>
                                 <span class="text-muted text-center">
-                                    <span class="badge badge-warning badge-large">No family email on file.</span>
+                                    <span class="badge badge-warning">No emails on file</span>
                                 </span>
                             <?php endif; ?>
                         </td>
@@ -176,7 +176,7 @@
                         <img src="<?php echo $this->family['family_photo']['thumbnail_retina_url']; ?>" srcset="<?php echo $this->family['family_photo']['thumbnail_retina_url']; ?> 1x, <?php echo $this->family['family_photo']['thumbnail_retina_url']; ?> 2x" class="rounded img-thumbnail" width="100%"/>
                     </a>
                 <?php else: ?>
-                    <span class="badge badge-large badge-light">No family photo on file.</span>
+                    <span class="badge badge-info mt-5" style="font-size: 100%">No photo on file</span>
                 <?php endif; ?>
 
             </div>

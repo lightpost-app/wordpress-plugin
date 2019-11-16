@@ -1,4 +1,6 @@
-<div class="lightpost">
+<link href="<?php echo plugins_url('css/lightpost.css', dirname(__FILE__)) ?>" rel="stylesheet">
+
+<div class="lp-bootstrap">
     <div class="wrap">
         <h2 class="">
             <a href="https://lightpost.app">
@@ -14,13 +16,13 @@
                 <tr valign="top">
                     <th scope="row">API key:</th>
                     <td>
-                        <input type="password" name="lightpost_api_key" value="<?php echo esc_attr(get_option('lightpost_api_key')) ?>" style="min-width: 300px;" />
+                        <input type="password" name="lightpost_api_key" value="<?php echo esc_attr(get_option('lightpost_api_key')) ?>" style="max-width: 300px;" class="form-control" />
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Sermon Page:</th>
                     <td>
-                        <select name="lightpost_sermon_archive_page_id" style="min-width: 300px;">
+                        <select name="lightpost_sermon_archive_page_id" style="max-width: 300px;" class="form-control">
                             <option> -- none -- </option>
                             <?php foreach (get_pages(['post_status' => 'publish,inherit,pending,private,future,draft,trash']) as $page): ?>
                                 <?php if (get_option('lightpost_sermon_archive_page_id') === (string) $page->ID): ?>
@@ -35,7 +37,7 @@
                 <tr valign="top">
                     <th scope="row">Bible Class Registration Page:</th>
                     <td>
-                        <select name="lightpost_bible_class_registration_page_id" style="min-width: 300px;">
+                        <select name="lightpost_bible_class_registration_page_id" style="max-width: 300px;" class="form-control">
                             <option> -- none -- </option>
                             <?php foreach (get_pages(['post_status' => 'publish,inherit,pending,private,future,draft,trash']) as $page): ?>
                                 <?php if (get_option('lightpost_bible_class_registration_page_id') === (string) $page->ID): ?>
@@ -50,7 +52,7 @@
                 <tr valign="top">
                     <th scope="row">Directory Page:</th>
                     <td>
-                        <select name="lightpost_directory_page_id" style="min-width: 300px;">
+                        <select name="lightpost_directory_page_id" style="max-width: 300px;" class="form-control d-inline">
                             <option> -- none -- </option>
                             <?php foreach (get_pages(['post_status' => 'publish,inherit,pending,private,future,draft,trash']) as $page): ?>
                                 <?php if (get_option('lightpost_directory_page_id') === (string) $page->ID): ?>
@@ -71,7 +73,7 @@
                 <!-- <tr valign="top">
                     <th scope="row">Theme:</th>
                     <td>
-                        <select name="lightpost_theme" style="min-width: 300px;">
+                        <select name="lightpost_theme" style="max-width: 300px;" class="form-control">
                             <option></option>
                             <?php foreach (['light', 'dark'] as $theme): ?>
                                 <?php if (get_option('lightpost_theme') === $theme): ?>
@@ -84,10 +86,13 @@
                         <p class="description">Helpful on non-Lightpost themes.</p>
                     </td>
                 </tr> -->
+                <tr valign="top">
+                    <th scope="row">&nbsp;</th>
+                    <td>
+                        <input type="submit" class="btn btn-primary" value="Save Changes" />
+                    </td>
+                </tr>
             </table>
-            <p class="submit">
-                <input type="submit" class="button-primary" value="Save Changes" />
-            </p>
         </form>
     </div>
 </div>

@@ -16,36 +16,27 @@ class Directory
 		$this->api_key = get_option('lightpost_api_key');
 		$this->page_id = (int) get_option('lightpost_directory_page_id');
 		
-		add_filter('the_content', [$this, 'getContent']);
+		add_filter('the_content', [$this, 'getContent'], 100);
 	}
 	
-	public function loadData()
-	{
+    public function getContent($content)
+    {
 		global $post;
 		
 		if ($this->page_id !== $post->ID) {
-			return;
-		}
-		
-		if(isset($_GET['family'])) {
-			$this->loadFamilyData();
-		} else {
-			$this->loadDirectoryData();
-		}
-	}
-	
-    public function getContent($content = null)
-    {
-		// If page is password protected and not authenticated, return existing content.
+			return $content;
+        }
+        
+        // If page is password protected and not authenticated, return existing content.
 		if(post_password_required()) {
-			return get_the_content();
+			return $content;
 		}
 		// If we have not agreed to the terms for this page, error out.
 		if(get_option('lightpost_directory_disclaimer') != 'true') {
 			return 'Cannot load content: the Lightpost member directory page disclaimer is not checked.';
-		}
-		
-		$this->loadData();
+        }
+        
+        $this->loadData();
 
         if ($this->error) {
             return $this->error_message ?: 'Unable to load directory information!  Please try again later.';
@@ -53,17 +44,28 @@ class Directory
 		
 		if (is_array($this->directory)) {
             ob_start();
+            echo $content;
             include dirname(__DIR__).'/views/directory.php';
             return ob_get_clean();
         }
 		
 		if (is_array($this->family)) {
             ob_start();
+            echo $content;
             include dirname(__DIR__).'/views/family.php';
             return ob_get_clean();
         }
 		
 		return $content;
+	}
+	
+	public function loadData()
+	{
+		if(isset($_GET['family'])) {
+			$this->loadFamilyData();
+		} else {
+			$this->loadDirectoryData();
+		}
 	}
 	
 	public function loadDirectoryData()

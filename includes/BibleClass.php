@@ -7,30 +7,53 @@ class BibleClass
 	protected $api_key;
 	protected $page_id;
 	protected $bible_classes;
-	protected $authors;
-	protected $sermon;
+	protected $error = false;
+	protected $error_message;
 	
 	public function __construct()
 	{
 		$this->api_key = get_option('lightpost_api_key');
 		$this->page_id = (int) get_option('lightpost_bible_class_registration_page_id');
 		
-		add_filter('the_content', [$this, 'getContent']);
-		// add_shortcode('custom_form', array($this, 'shortcode_handler'));
+		add_filter('the_content', [$this, 'getContent'], 100);
 	}
 	
-	public function loadData()
-	    {
+    public function getContent($content = null)
+    {
 		global $post;
 		
 		if ($this->page_id !== $post->ID) {
-			return;
+			return $content;
 		}
 		
-		$this->loadBibleClassData();
+        $this->loadData();
+
+        if ($this->error) {
+            return 'Unable to load Bible class data!  Please try again later.';
+        }
+		
+		if(sanitize_text_field($_POST['sub_19493']) == 'sub_11492') {
+			$this->submitRegistration();
+		}
+		
+		if (is_array($this->bible_classes)) {
+            ob_start();
+            echo $content;
+            include dirname(__DIR__).'/views/bible_classes.php';
+            return ob_get_clean();
+        }
+		
+		if (is_array($this->sermon)) {
+            ob_start();
+            echo $content;
+            include dirname(__DIR__).'/views/bible_class.php';
+            return ob_get_clean();
+        }
+		
+		return $content;
 	}
 	
-	public function loadBibleClassData()
+	public function loadData()
 	{
 		if ($this->bible_classes) {
 			return;
@@ -100,33 +123,6 @@ class BibleClass
 				$this->success_message = true;
 			}
 		}
-	}
-	
-    public function getContent($content)
-    {
-		$this->loadData();
-		
-		if(sanitize_text_field($_POST['sub_19493']) == 'sub_11492') {
-			$this->submitRegistration();
-		}
-
-        if ($this->error) {
-            return 'Unable to load Bible class data!  Please try again later.';
-        }
-		
-		if (is_array($this->bible_classes)) {
-            ob_start();
-            include dirname(__DIR__).'/views/bible_classes.php';
-            return ob_get_clean();
-        }
-		
-		if (is_array($this->sermon)) {
-            ob_start();
-            include dirname(__DIR__).'/views/bible_class.php';
-            return ob_get_clean();
-        }
-		
-		return $content;
 	}
 
 	private function recursive_sanitize_text_field($array) 
