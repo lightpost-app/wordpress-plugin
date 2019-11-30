@@ -20,7 +20,7 @@ Please note: you must be a Lightpost customer to use this plugin. This plugin ca
 - Upload the plugin into a `lightpost` folder in the `/wp-content/plugins` directory.
 - Activate plugin in the Wordpress admin.
 - In the Wordpress admin, go to Settings, then Lightpost, and enter your Lightpost API key.
-- To enable the diretory, Bible class, calendars or sermon archives, simply select the pages you want them to appear on.
+- To enable the directory, Bible class, calendars or sermon archives, simply select the pages you want them to appear on.
 - You can also optionally set a theme.
 
 == Frequently Asked Questions ==
@@ -34,6 +34,11 @@ Please note: you must be a Lightpost customer to use this plugin. This plugin ca
 This plugin works once you have signed up for a Lightpost account and can access the API key for your account.
 
 == Changelog ==
+
+= 1.1.4 =
+
+* Added teacher names to Bible class registration information.
+* Updated Bible class listing to a single column to better accommodate more designs.
 
 = 1.1.3 =
 

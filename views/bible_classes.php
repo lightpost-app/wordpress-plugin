@@ -4,7 +4,7 @@
 
 <div class="container p-0">
 <div class="row">
-<div class="col-lg-6">
+<div class="col-12">
 
     <?php if($this->success_message): ?>
         <div class="alert alert-success" role="alert">
@@ -42,7 +42,7 @@
         <?php $current_type_id = null; ?>
         <?php foreach ($by_attendance_types as $type_id => $classes): ?>
             <?php if($current_type_id != $type_id): ?>
-                <h3><?php echo esc_html($classes[0]['attendance_type']['name']); ?></h3>
+                <h2><?php echo esc_html($classes[0]['attendance_type']['name']); ?></h2>
                 <table class="table table-condensed table-striped table-bordered" width="100%">
                 <!-- <thead class="thead-dark table-sm">
                     <tr>
@@ -94,20 +94,26 @@
     <button class="form-control btn btn-primary" type="submit">Submit Registration</button>
 
     </form>
+    <hr>
 </div>
-<div class="col-lg-6">
-    <hr class="d-lg-none">
+<div class="col-12 mt-4">
     <?php if ($by_attendance_types): ?>
         <?php $current_type_id = null; ?>
         <?php foreach ($by_attendance_types as $type_id => $classes): ?>
             <?php if($current_type_id != $type_id): ?>
-                <h4><?php echo esc_html($classes[0]['attendance_type']['name']); ?></h4>
+                <h3><?php echo esc_html($classes[0]['attendance_type']['name']); ?></h3>
                 <hr>
             <?php endif; ?>
                 <?php foreach($classes as $class): ?>
-                    <p><strong><?php echo esc_html($class['title']); ?></strong>
-                    <br>
-                    <?php echo esc_html($class['description']); ?>
+                    <p>
+                        <h4 class="font-weight-bold"><?php echo esc_html($class['title']); ?></h4>
+                        <?php echo esc_html($class['description']); ?>
+                        <?php if(is_array($class['teachers'])): ?>
+                            <br>
+                            <?php foreach($class['teachers'] as $teacher): ?>
+                                <span class="badge badge-large badge-secondary py-1 px-2"><?php echo $teacher['first_name'] . ' ' . $teacher['last_name']; ?></span>
+                            <?php endforeach;?>
+                        <?php endif; ?>
                     </p>
                 <?php endforeach; ?>
             <?php if($current_type_id != $type_id): ?>
